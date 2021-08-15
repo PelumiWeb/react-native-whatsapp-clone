@@ -11,8 +11,10 @@ import { Feather } from '@expo/vector-icons';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import ChatScreen from '../screens/ChatScreen';
+import CameraScreen from '../screens/CameraScreen'
+import StatusScreen from '../screens/statusScreen';
+
 import { MainTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
@@ -38,7 +40,7 @@ export default function BottomTabNavigator() {
        }>
       <MainTab.Screen
         name="Camera"
-        component={TabOneNavigator}
+        component={CameraScreen}
         options={{
           tabBarIcon: ({ color }) => <Feather name="camera" size={24} color="black" />,
           tabBarLabel: () => null
@@ -46,16 +48,16 @@ export default function BottomTabNavigator() {
       />
       <MainTab.Screen
         name="Chats"
-        component={TabTwoNavigator}
+        component={ChatScreen}
       />
        <MainTab.Screen
         name="Status"
-        component={TabTwoNavigator}
+        component={StatusScreen}
      
       />
        <MainTab.Screen
         name="Calls"
-        component={TabTwoNavigator}
+        component={StatusScreen}
       />
     </MainTab.Navigator>
   );
@@ -69,30 +71,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+// const TabOneStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
-  return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
-      />
-    </TabOneStack.Navigator>
-  );
-}
+// function TabOneNavigator() {
+//   return (
+//     <TabOneStack.Navigator>
+//       <TabOneStack.Screen
+//         name="TabOneScreen"
+//         component={TabOneScreen}
+//         options={{ headerTitle: 'Tab One Title' }}
+//       />
+//     </TabOneStack.Navigator>
+//   );
+// }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+// const TabTwoStack = createStackNavigator<TabTwoParamList>();
 
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
-      />
-    </TabTwoStack.Navigator>
-  );
-}
+// function TabTwoNavigator() {
+//   return (
+//     <TabTwoStack.Navigator>
+//       <TabTwoStack.Screen
+//         name="TabTwoScreen"
+//         component={TabTwoScreen}
+//         options={{ headerTitle: 'Tab Two Title' }}
+//       />
+//     </TabTwoStack.Navigator>
+//   );
+// }
