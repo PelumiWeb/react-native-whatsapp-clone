@@ -1,17 +1,21 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 import {View} from 'react-native'
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons, FontAwesome5, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons'; 
 
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
-import BottomTabNavigator from './MainTabNavigator';
+import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+import ChatRoomScreen from '../screens/ChatRoom';
+
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -43,7 +47,7 @@ function RootNavigator() {
       }}>
       <Stack.Screen
       name="Root" 
-      component={BottomTabNavigator} 
+      component={MainTabNavigator} 
       options={{
         title: 'WhatsApp',
         headerRight: () => (
@@ -55,7 +59,23 @@ function RootNavigator() {
         )
       }}
       />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      {/* <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> */}
+      <Stack.Screen name="ChatRoom" component={ChatRoomScreen} options={({route}) => ({
+        title: route.params.name,
+        headerRight: () => (
+          <View style={{flexDirection: 'row', width: 100, marginRight: 10, justifyContent: 'space-between', color:'#fff' }}> 
+          <TouchableOpacity activeOpacity={0.5} > 
+          <FontAwesome5 name="video" size={22} color="#fff" />
+          </TouchableOpacity>
+         <TouchableOpacity>
+         <MaterialIcons name="call" size={22} color="#fff" />
+          </TouchableOpacity> 
+          <TouchableOpacity> 
+          <MaterialCommunityIcons name="dots-vertical" size={22} color="#fff" />
+          </TouchableOpacity>
+          </View>
+        )
+      })} />
     </Stack.Navigator>
   );
 }
