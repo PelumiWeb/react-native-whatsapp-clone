@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { StyleSheet, View, FlatList} from 'react-native';
-import ChatListItem from '../components/ChatListItem/index';
-import FloatButton from '../components/FloatButton';
-import ChatRooms from '../data/ChatRooms';
+import ContactListItem from '../components/ContactListItem';
+import users from '../data/Users';
+
 
 export default function ChatScreen() {
   return (
-    <View style={{position: 'relative'}}>
-      <FlatList
+    <View>
+         <FlatList
       style={{width: '100%'}}
-      data={ChatRooms}
+      data={users}
       renderItem={({item}) => 
-     <ChatListItem ChatRoom={item}/> 
+     <ContactListItem user={item}/> 
       }
       keyExtractor={(item) => item.id}
       /> 
-      <FloatButton />
     </View>
   );
 }

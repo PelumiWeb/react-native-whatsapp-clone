@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, FlatList, ImageBackground} from 'react-native'
 import ChatMessage from '../components/ChatMessage/index'
 import Chats from '../data/Chats'
 import BG from '../assets/images/BG.png'
+import InputBox from '../components/InputBox'
 
 const ChatRoomScreen = () => {
     const route = useRoute()
@@ -16,9 +17,10 @@ const ChatRoomScreen = () => {
         )}
         inverted
         />
+        <InputBox />
         </ImageBackground>
        
-    // <ChatMessage />
+    
 )
 }
 

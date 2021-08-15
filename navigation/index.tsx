@@ -16,6 +16,7 @@ import ChatRoomScreen from '../screens/ChatRoom';
 
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import ContactScreen from '../screens/ContactScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -63,7 +64,7 @@ function RootNavigator() {
       <Stack.Screen name="ChatRoom" component={ChatRoomScreen} options={({route}) => ({
         title: route.params.name,
         headerRight: () => (
-          <View style={{flexDirection: 'row', width: 100, marginRight: 10, justifyContent: 'space-between', color:'#fff' }}> 
+          <View style={{flexDirection: 'row', width: 100, marginRight: 10, justifyContent: 'space-between', color: 'white' }}> 
           <TouchableOpacity activeOpacity={0.5} > 
           <FontAwesome5 name="video" size={22} color="#fff" />
           </TouchableOpacity>
@@ -76,6 +77,7 @@ function RootNavigator() {
           </View>
         )
       })} />
+       <Stack.Screen name="Contact" component={ContactScreen} options={{ title: 'Contact' }} />
     </Stack.Navigator>
   );
 }
