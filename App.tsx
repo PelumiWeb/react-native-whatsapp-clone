@@ -34,6 +34,7 @@ import Navigation from './navigation';
   useEffect(() => {
   const fetchData = async () => {
   const userInfo = await Auth.currentAuthenticatedUser({ bypassCache: false})
+  console.log(userInfo)
   if (userInfo) {
     //get the user from the backend
     const userData = await API.graphql(
