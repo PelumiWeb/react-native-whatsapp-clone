@@ -1,18 +1,42 @@
 import { FontAwesome5, Fontisto, MaterialCommunityIcons, Entypo, MaterialIcons } from '@expo/vector-icons'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import styles from './style'
+import {API, Auth, graphqlOperation} from 'aws-amplify'
+import { createMessage } from '../../src/graphql/mutations'
 
-const index = () => {
+const index = ({chatRoomID}) => {
     const [text, setText] = useState('')
-//    const handleText = () => {
-//        setText()
-//    }
-const onMicrophonePress = () => {
-console.warn('Microphone was pressed')
-}
+    const [userId, setUserId] = useState(null)
+    console.log(chatRoomID)
 
-const onSendPress = () => {
+    // const {chatRoomID} = props
+        useEffect(() => {
+        const fetchUser = async () => {
+        const userInfo = await Auth.currentAuthenticatedUser()
+        setUserId(userInfo.attributes.sub)
+        }
+        fetchUser()
+        }, [])
+
+        const onMicrophonePress = () => {
+        console.warn('Microphone was pressed')
+        }
+
+const onSendPress = async () => {
+
+    try {
+        await API.graphql(graphqlOperation(createMessage, {
+            input : {
+                content: text,
+                userID: userId,
+                chatRoomID 
+
+            }
+        }))
+    }catch (e) {
+
+    }
     setText('')
 }
 

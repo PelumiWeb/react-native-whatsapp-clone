@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import moment from 'moment'
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Text, View, Image, StyleSheet } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import {User} from '../../types'
@@ -76,7 +76,7 @@ const ContactListItem = (props: ContactListItemProps) =>{
         <TouchableWithoutFeedback onPress={onClick}> 
         <View style={styles.container}>
             <View style={styles.leftContainer}> 
-            <Image source={{uri: user.imageUri}} style={styles.avatar} />
+            <Image source={{uri: user.imageUrl}} style={styles.avatar} />
             <View style={styles.midContainer}> 
             <Text> {user.name}</Text >
             <Text numberOfLines={1} ellipsizeMode="tail" style={styles.lastMessage}>{user.status}</Text>

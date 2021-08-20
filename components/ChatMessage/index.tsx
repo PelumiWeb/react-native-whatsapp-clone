@@ -1,5 +1,5 @@
 import moment from 'moment'
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Message } from '../../types'
 import styles from './ChatMessage'
@@ -10,10 +10,10 @@ export type ChatMessageProps = {
 }
 
 const ChatMessage = (props:ChatMessageProps) => {
-    const { messages } = props
+    const { messages, myId } = props
 
     const isMyMessage = () => {
-        return messages.user.id === 'u1'
+        return messages.user.id === myId
     }
 
     return (
